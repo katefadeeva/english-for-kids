@@ -1,24 +1,32 @@
-@media screen and (max-width: 1080px) {
-   .menu__btn {
-       left: 10px;
-   }
+@media screen and (max-width: 1429px) {
+    .header {
+        max-width: 1000px;
+    }
+    .rating {
+        max-width: 1000px;
+    }
+}
 
-   .switch {
-       right: 10px;
-   }
+@media screen and (max-width: 1079px) {
+    .header {
+        max-width: 650px;
+    }
+    .rating {
+        max-width: 650px;
+    }
 
 }
 
-@media screen and (max-width: 730px) {
+@media screen and (max-width: 729px) {
     .header {
-        margin: 0 50px;
+        max-width: 300px;
+    }
+    .rating {
+        max-width: 300px;
     }
 }
 
 @media screen and (max-width: 375px) {
-    .header {
-        margin: 0 10px;
-    }
 
     .navigation {
         width: 100%;
