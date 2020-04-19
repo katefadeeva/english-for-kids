@@ -53,6 +53,10 @@ cardsNodeList.forEach((item, index) => {
     };
 
     if (app.mode === 'play' && app.isGameStarted) {
+      
+      if (document.querySelectorAll('.front')[index].className === 'front inactive' ) {
+        return false;
+      }
       if(cardSound === randomSounds[currentSoundIndex]) {
         document.querySelectorAll('.front')[index].classList.add('inactive');
         const star = document.createElement('div');
@@ -83,28 +87,46 @@ cardsNodeList.forEach((item, index) => {
   });
 });
 
+function removeGreenStyle() {
+  document.querySelector('h1').classList.remove('green');
+  document.querySelectorAll('.audio').forEach(item => randomSounds.push(item.src));
+  shuffle(randomSounds);
+  document.querySelector('.navigation').classList.remove('green');
+  cardsNodeList.forEach(item => item.classList.add('card-cover'));
+  document.querySelectorAll('.rotate').forEach(item => item.classList.add('none'));
+  document.querySelectorAll('.card-header').forEach(item => item.classList.add('none'));
+  document.querySelector('.btn').classList.remove('none');
+}
+
+function addGreenStyle() {
+  randomSounds = [];
+  app.isGameStarted = false;
+  document.querySelector('h1').classList.add('green');
+  document.querySelector('.navigation').classList.add('green');
+  cardsNodeList.forEach(item => item.classList.remove('card-cover'));
+  document.querySelectorAll('.rotate').forEach(item => item.classList.remove('none'));
+  document.querySelectorAll('.card-header').forEach(item => item.classList.remove('none'));
+  document.querySelector('.btn').classList.add('none');
+}
+
+function updateSetsStyles() {
+  if (app.mode === 'train') {
+    document.querySelector('.switch-input').checked = true;
+    addGreenStyle();
+  } else if (app.mode === 'play') {
+    document.querySelector('.switch-input').checked = false;
+    removeGreenStyle();
+  };
+}
+
 // переход в режим Игры
 document.querySelector('.switch-input').addEventListener('change', function () {
   if (!this.checked) {
     app.mode = 'play';
-    document.querySelector('h1').classList.remove('green');
-    document.querySelectorAll('.audio').forEach(item => randomSounds.push(item.src));
-    shuffle(randomSounds);
-    document.querySelector('.navigation').classList.remove('green');
-    cardsNodeList.forEach(item => item.classList.add('card-cover'));
-    document.querySelectorAll('.rotate').forEach(item => item.classList.add('none'));
-    document.querySelectorAll('.card-header').forEach(item => item.classList.add('none'));
-    document.querySelector('.btn').classList.remove('none');
+    removeGreenStyle();
   } else {
-    randomSounds = [];
     app.mode = 'train';
-    app.isGameStarted = false;
-    document.querySelector('h1').classList.add('green');
-    document.querySelector('.navigation').classList.add('green');
-    cardsNodeList.forEach(item => item.classList.remove('card-cover'));
-    document.querySelectorAll('.rotate').forEach(item => item.classList.remove('none'));
-    document.querySelectorAll('.card-header').forEach(item => item.classList.remove('none'));
-    document.querySelector('.btn').classList.add('none');
+    addGreenStyle();
   }
 });
 
@@ -127,8 +149,14 @@ document.querySelector('.btn').addEventListener('click', () => {
   document.querySelector('.rating').classList.remove('none');
 });
 
+window.onload = () => {
+  app.mode = localStorage.getItem('mode');
+  updateSetsStyles();
+  localStorage.clear();
+}
 
-
-
-
-
+document.querySelectorAll('a').forEach(item => {
+  item.addEventListener('click', () => {
+    localStorage.setItem('mode', app.mode);
+  })
+})

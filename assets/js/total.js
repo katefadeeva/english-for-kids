@@ -1,3 +1,4 @@
+localStorage.setItem('mode', 'play');
 
 if (localStorage.getItem('error') === '0') {
   document.querySelector('h1').innerHTML = `Win!`;
