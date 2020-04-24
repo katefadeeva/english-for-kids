@@ -1,6 +1,4 @@
-// import {cards} from './cards.js';
 import {createContainer} from './container.js';
-
 
 createContainer();
 let randomSounds = [];
@@ -137,7 +135,7 @@ function shuffle(array) {
 
 function playSound(soundSrc) {
   const audio = new Audio();
-  audio.src = soundSrc; // randomSounds[currentSoundIndex]; // Указываем путь к звуку "клика"
+  audio.src = soundSrc; 
   audio.autoplay = true;
 }
 
@@ -150,7 +148,9 @@ document.querySelector('.btn').addEventListener('click', () => {
 });
 
 window.onload = () => {
-  app.mode = localStorage.getItem('mode');
+  if (!localStorage.getItem('mode')) {
+    app.mode = 'train';
+  } else {app.mode = localStorage.getItem('mode');}
   updateSetsStyles();
   localStorage.clear();
 }
