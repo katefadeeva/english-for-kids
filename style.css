@@ -26,7 +26,7 @@ p {
     margin: 40px auto 0;
 }
 
-.nav__bar {
+.nav {
     position: relative;
 }
 
@@ -90,7 +90,7 @@ a {
     z-index: 1;
 }  
 
-.navigation.green {
+.navigation.active {
     background: linear-gradient(40deg,#00bf82,#0099ae);
 }
 
@@ -101,7 +101,7 @@ a {
     font-size: 24px;
 }
 
-.navigation.green a:hover {
+.navigation.active a:hover {
     background-color: #cdcdcd;
     color: #fc6262;
 }
@@ -111,7 +111,7 @@ a {
     color: #00bf82;
 }
 
-.navigation.green a.item-link {
+.navigation.active a.item-link {
     background-color: #cdcdcd;
     color: #fc6262;
 }
@@ -257,7 +257,7 @@ h1 {
     color: #fd6a63;   
 }
 
-h1.green {
+h1.active {
     color: #0099ae;
 }
 
@@ -297,7 +297,7 @@ h1.green {
     box-shadow: 0 10px 20px rgba(0,0,0,.4);
 }
 
-.main-card.green {
+.main-card.active {
     background: linear-gradient(180deg,#0099ae,#00bf82 40%,#fff 0,#fff);
 }
 

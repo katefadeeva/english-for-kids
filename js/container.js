@@ -6,7 +6,7 @@ import {urlParamsMap} from './mapping.js';
   }
   export function createContainer() {
     const h1 = document.createElement('h1');
-    h1.classList.add('green');
+    h1.classList.add('active');
     h1.innerHTML = urlParamsMap.get(getUrlVars());
 
     // создаем main elements
@@ -36,7 +36,7 @@ import {urlParamsMap} from './mapping.js';
           rotate.classList.add('rotate');
           audio.classList.add('audio');
 
-          audio.src = `${item.audioSrc}`;
+          audio.src = item.audioSrc;
           headerFront.innerHTML = item.word;
           headerBack.innerHTML = item.translation;
           front.style.backgroundImage = `url(${item.image})`;

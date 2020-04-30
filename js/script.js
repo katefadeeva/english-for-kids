@@ -19,13 +19,8 @@ document.querySelectorAll('a.menu__item').forEach(item => {
   }
 })
 
-document.querySelector('#menu__toggle').addEventListener('click', function() {
-  if (document.getElementById('menu__toggle').checked === true) {
-    document.querySelector('body').style.overflow = 'hidden';
-  }
-  if (document.getElementById('menu__toggle').checked === false) {
-    document.querySelector('body').style.overflow = 'visible';
-  }
+document.querySelector('#menu__toggle').addEventListener('click', () => {
+  document.querySelector('body').style.overflow = document.getElementById('menu__toggle').checked ? 'hidden' : 'visible';
 });
 
 // переворот карты
@@ -57,7 +52,9 @@ cardsNodeList.forEach((item, index) => {
       }
       if(cardSound === randomSounds[currentSoundIndex]) {
         document.querySelectorAll('.front')[index].classList.add('inactive');
+
         const star = document.createElement('div');
+        
         star.classList.add('star-succes');
         document.querySelector('.rating').appendChild(star);
         document.querySelector('.soundEffects').src = '../assets/audio/correct.mp3';
@@ -85,22 +82,22 @@ cardsNodeList.forEach((item, index) => {
   });
 });
 
-function removeGreenStyle() {
-  document.querySelector('h1').classList.remove('green');
+function removeActiveStyle() {
+  document.querySelector('h1').classList.remove('active');
   document.querySelectorAll('.audio').forEach(item => randomSounds.push(item.src));
   shuffle(randomSounds);
-  document.querySelector('.navigation').classList.remove('green');
+  document.querySelector('.navigation').classList.remove('active');
   cardsNodeList.forEach(item => item.classList.add('card-cover'));
   document.querySelectorAll('.rotate').forEach(item => item.classList.add('none'));
   document.querySelectorAll('.card-header').forEach(item => item.classList.add('none'));
   document.querySelector('.btn').classList.remove('none');
 }
 
-function addGreenStyle() {
+function addActiveStyle() {
   randomSounds = [];
   app.isGameStarted = false;
-  document.querySelector('h1').classList.add('green');
-  document.querySelector('.navigation').classList.add('green');
+  document.querySelector('h1').classList.add('active');
+  document.querySelector('.navigation').classList.add('active');
   cardsNodeList.forEach(item => item.classList.remove('card-cover'));
   document.querySelectorAll('.rotate').forEach(item => item.classList.remove('none'));
   document.querySelectorAll('.card-header').forEach(item => item.classList.remove('none'));
@@ -110,10 +107,10 @@ function addGreenStyle() {
 function updateSetsStyles() {
   if (app.mode === 'train') {
     document.querySelector('.switch-input').checked = true;
-    addGreenStyle();
+    addActiveStyle();
   } else if (app.mode === 'play') {
     document.querySelector('.switch-input').checked = false;
-    removeGreenStyle();
+    removeActiveStyle();
   };
 }
 
@@ -121,10 +118,10 @@ function updateSetsStyles() {
 document.querySelector('.switch-input').addEventListener('change', function () {
   if (!this.checked) {
     app.mode = 'play';
-    removeGreenStyle();
+    removeActiveStyle();
   } else {
     app.mode = 'train';
-    addGreenStyle();
+    addActiveStyle();
   }
 });
 

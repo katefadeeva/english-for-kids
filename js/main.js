@@ -3,24 +3,24 @@ let mode = 'train';
 function updateSetsStyles() {
   if (mode === 'train') {
     document.querySelector('.switch-input').checked = true;
-    addGreenStyle();
+    addActiveStyle();
   } else if (mode === 'play') {
     document.querySelector('.switch-input').checked = false;
-    removeGreenStyle();
+    removeActiveStyle();
   };
 }
 
-function removeGreenStyle() {
-  document.querySelector('.navigation').classList.remove('green');
+function removeActiveStyle() {
+  document.querySelector('.navigation').classList.remove('active');
   document.querySelectorAll('.main-card').forEach((item) => {
-    item.classList.remove('green');
+    item.classList.remove('active');
   });
 }
 
-function addGreenStyle() {
-  document.querySelector('.navigation').classList.add('green');
+function addActiveStyle() {
+  document.querySelector('.navigation').classList.add('active');
   document.querySelectorAll('.main-card').forEach((item) => {
-    item.classList.add('green');
+    item.classList.add('active');
   });
 }
 
@@ -28,20 +28,15 @@ function addGreenStyle() {
 document.querySelector('.switch-input').addEventListener('change', function () {
   if (!this.checked) {
     mode = 'play';
-    removeGreenStyle();
+    removeActiveStyle();
   } else if (this.checked) {
     mode = 'train';
-    addGreenStyle();
+    addActiveStyle();
   };
 });
 
-document.querySelector('#menu__toggle').addEventListener('click', function() {
-  if (document.getElementById('menu__toggle').checked === true) {
-    document.querySelector('body').style.overflow = 'hidden';
-  }
-  if (document.getElementById('menu__toggle').checked === false) {
-    document.querySelector('body').style.overflow = 'visible';
-  }
+document.querySelector('#menu__toggle').addEventListener('click', () => {
+  document.querySelector('body').style.overflow = document.getElementById('menu__toggle').checked ? 'hidden' : 'visible';
 });
 
 window.onload = () => {
