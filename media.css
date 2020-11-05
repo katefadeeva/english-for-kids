@@ -1,0 +1,39 @@
+@media screen and (max-width: 1429px) {
+    .header {
+        max-width: 1000px;
+    }
+    .rating {
+        max-width: 1000px;
+    }
+}
+
+@media screen and (max-width: 1079px) {
+    .header {
+        max-width: 650px;
+    }
+    .rating {
+        max-width: 650px;
+    }
+
+}
+
+@media screen and (max-width: 729px) {
+    .header {
+        max-width: 300px;
+    }
+    .rating {
+        max-width: 300px;
+    }
+}
+
+@media screen and (max-width: 475px) {
+
+    .navigation {
+        width: 100%;
+        top: -50px;
+    }
+
+    .navigation a {
+        padding: 10px 71px;
+    }
+}
